@@ -21,10 +21,12 @@ class Locators:
 
 class CreateAccountPage(BasePage):
     def choose_gender(self, gender):
-        if gender == Gender.MALE:
+        if gender == Gender.MALE or gender == "male":
             self.driver.find_element(*Locators.GENDER_MALE).click()
-        else:
+        elif gender == Gender.FEMALE or gender == "female":
             self.driver.find_element(*Locators.GENDER_FEMALE).click()
+        else:
+            raise ValueError("Gender must be either MALE or FEMALE")
     def enter_firstname(self, firstname):
         self.driver.find_element(*Locators.FIRST_NAME).send_keys(firstname)
 
